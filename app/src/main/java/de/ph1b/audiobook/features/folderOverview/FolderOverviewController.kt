@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.getbase.floatingactionbutton.FloatingActionsMenu
 import de.ph1b.audiobook.R
 import de.ph1b.audiobook.databinding.FolderOverviewBinding
+import de.ph1b.audiobook.features.BooksonicSetup.BooksonicSetupActivity
 import de.ph1b.audiobook.features.folderChooser.FolderChooserActivity
 import de.ph1b.audiobook.misc.conductor.context
 import de.ph1b.audiobook.mvp.MvpController
@@ -34,6 +35,10 @@ class FolderOverviewController :
 
   override fun FolderOverviewBinding.onBindingCreated() {
     buttonRepresentingTheFam = binding.root.findViewById(R.id.fab_expand_menu_button)
+
+    addAsBooksonic.setOnClickListener {
+      startBooksonicSetupActivity()
+    }
 
     addAsSingle.setOnClickListener {
       startFolderChooserActivity(FolderChooserActivity.OperationMode.SINGLE_BOOK)
@@ -67,6 +72,10 @@ class FolderOverviewController :
     recycler.adapter = adapter
 
     fam.setOnFloatingActionsMenuUpdateListener(famMenuListener)
+
+
+    addAsBooksonic.setIconDrawable(context.getDrawable(R.drawable.ic_download)!!.tinted(Color.WHITE))
+    addAsBooksonic.title = "${context.getString(R.string.folder_add_booksonic_server)}"
 
     addAsSingle.setIconDrawable(context.getDrawable(R.drawable.ic_folder)!!.tinted(Color.WHITE))
     addAsLibrary.setIconDrawable(context.getDrawable(R.drawable.folder_multiple)!!.tinted(Color.WHITE))
@@ -153,6 +162,17 @@ class FolderOverviewController :
 
   private fun FolderOverviewBinding.startFolderChooserActivity(operationMode: FolderChooserActivity.OperationMode) {
     val intent = FolderChooserActivity.newInstanceIntent(activity!!, operationMode)
+    // we don't want our listener be informed.
+    fam.setOnFloatingActionsMenuUpdateListener(null)
+    fam.collapseImmediately()
+    fam.setOnFloatingActionsMenuUpdateListener(famMenuListener)
+
+    overlay.isVisible = false
+    startActivity(intent)
+  }
+
+  private fun FolderOverviewBinding.startBooksonicSetupActivity() {
+    val intent = BooksonicSetupActivity.newInstanceIntent(activity!!)
     // we don't want our listener be informed.
     fam.setOnFloatingActionsMenuUpdateListener(null)
     fam.collapseImmediately()

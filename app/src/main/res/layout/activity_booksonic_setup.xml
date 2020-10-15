@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".features.BooksonicSetup.BooksonicSetupActivity">
+    <EditText
+      android:id="@+id/editServerAddress"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="116dp"
+      android:contentDescription="Server address"
+      android:ems="10" android:hint="Server address"
+      android:inputType="textPersonName" app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <EditText
+      android:id="@+id/editUserName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="1dp"
+      android:layout_marginTop="21dp" android:contentDescription="Username" android:ems="10"
+      android:hint="Username"
+      android:inputType="textPersonName"
+      app:layout_constraintStart_toStartOf="@+id/editServerAddress" app:layout_constraintTop_toBottomOf="@+id/editServerAddress"/>
+    <EditText
+      android:id="@+id/editUserPassword"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="22dp"
+      android:layout_marginEnd="1dp" android:ems="10"
+      android:hint="Password" android:inputType="textPassword"
+      app:layout_constraintEnd_toEndOf="@+id/editUserName"
+      app:layout_constraintTop_toBottomOf="@+id/editUserName"/>
+    <Button
+      android:id="@+id/SaveButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" android:layout_marginTop="32dp" android:text="Save"
+      app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.306"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/editUserPassword"/>
+    <Button
+      android:id="@+id/TestButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" android:layout_marginStart="38dp"
+      android:text="Test" app:layout_constraintBaseline_toBaselineOf="@+id/SaveButton" app:layout_constraintStart_toEndOf="@+id/SaveButton"
+    />
+</androidx.constraintlayout.widget.ConstraintLayout>

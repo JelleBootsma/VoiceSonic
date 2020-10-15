@@ -168,6 +168,7 @@ dependencies {
   testImplementation(Deps.Prefs.inMemory)
 
   implementation(Deps.tapTarget)
+  implementation("khttp:khttp:1.0.0")
   testImplementation(Deps.AndroidX.Test.runner)
   testImplementation(Deps.AndroidX.Test.junit)
   testImplementation(Deps.AndroidX.Test.core)

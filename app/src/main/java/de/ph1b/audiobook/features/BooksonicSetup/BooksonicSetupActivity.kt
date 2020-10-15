@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import de.ph1b.audiobook.R
 import kotlinx.android.synthetic.main.activity_booksonic_setup.*
-import java.io.BufferedInputStream
-import java.net.URL
-import java.net.HttpURLConnection
+//import khttp.get
+//import khttp.post
 
 class BooksonicSetupActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,27 +29,23 @@ class BooksonicSetupActivity : AppCompatActivity() {
         editUserPassword.setError("Enter password")
         allOkay = false
       }
-      if (allOkay){
-        testRequest(editServerAddress.toString(), editUserName.toString(), editUserPassword.toString())
+      if (allOkay && testRequest(editServerAddress.toString(), editUserName.toString(), editUserPassword.toString())){
+        TestButton.setBackgroundColor(getColor(R.color.green))
+      }
+      else {
+        TestButton.setBackgroundColor(getColor(R.color.white))
       }
     }
 
   }
   fun testRequest(serverAddress : String, Username : String, password: String):Boolean{
-    var url = URL(serverAddress)
-    var urlConnection = url.openConnection() as HttpURLConnection
-    try {
-        var inConnect = BufferedInputStream(urlConnection.inputStream)
-        var xml = inConnect.read()
-        var code = urlConnection.responseCode
-        if (code == 200){
-          urlConnection.disconnect()
-          return true
-        }
-    }finally {
-        urlConnection.disconnect()
-        return false
-    }
+    //var completeRequestTarget = "$serverAddress/rest/ping?u=$Username&p=$password&v=1.15.0&c=VoiceSonic"
+    //val response = khttp.get(completeRequestTarget)
+    //if (response.statusCode == 200){
+    //  return true
+    //}
+
+    return false
 
   }
 
